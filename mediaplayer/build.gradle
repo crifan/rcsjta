@@ -4,8 +4,8 @@
 apply plugin: 'com.android.library'
 
 android {
-    compileSdkVersion rootProject.compileSdkVersion
-    buildToolsVersion rootProject.buildToolsVersion
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    // buildToolsVersion rootProject.buildToolsVersion
 
     //Required to support the old folder structure
     sourceSets {
@@ -23,5 +23,8 @@ android {
 
     lintOptions {
         abortOnError false
+    }
+    defaultConfig {
+        minSdkVersion 12
     }
 }

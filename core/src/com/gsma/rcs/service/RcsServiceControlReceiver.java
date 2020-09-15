@@ -67,7 +67,8 @@ public class RcsServiceControlReceiver extends BroadcastReceiver {
 
     private RcsSettings mRcsSettings;
 
-    private static boolean sAccurateLog = false;
+    // private static boolean sAccurateLog = false;
+    private static boolean sAccurateLog = true;
 
     private interface IRcsCompatibility {
         boolean isCompatible(String serviceName, String codename, int version, int increment);

@@ -55,6 +55,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.telephony.TelephonyManager;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -93,7 +94,7 @@ public class Provisioning extends AppCompatActivity {
      */
     private static final String PROVISIONING_FOLDER_PATH = Environment
             .getExternalStorageDirectory().getPath();
-    private String[] titles = new String[] {
+    private String[] titles = new String[]{
             "Profile", "Stack", "Service", "Capabilities", "Logger"
     };
 
@@ -108,6 +109,35 @@ public class Provisioning extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         mActivity = this;
         setContentView(R.layout.provisioning);
+
+//        TelephonyManager telephonyManager = (TelephonyManager) App.getInstance().getSystemService(TELEPHONY_SERVICE);// 取得相关系统服务
+//        TelephonyManager telephonyManager = (TelephonyManager) context.getInstance().getSystemService(TELEPHONY_SERVICE);// 取得相关系统服务
+        TelephonyManager telephonyManager = (TelephonyManager) this
+                .getSystemService(TELEPHONY_SERVICE);// 取得相关系统服务
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+            return;
+        }
+//        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_PRIVILEGED_PHONE_STATE) != PackageManager.PERMISSION_GRANTED) {
+//            return;
+//        }
+        String imsi = telephonyManager.getSubscriberId();
+        if (imsi != null) {
+            sLogger.debug("IMSI=".concat(imsi));
+        }
+        String simOp = telephonyManager.getSimOperator();
+        sLogger.debug("Sim Operator=".concat(simOp));
+//        String imei = telephonyManager.getImei();
+        String imei = telephonyManager.getDeviceId();
+        if (imei != null) {
+            sLogger.debug("IMEI=".concat(imei));
+        }
 
         LocalContentResolver localContentResolver = new LocalContentResolver(
                 getApplicationContext());

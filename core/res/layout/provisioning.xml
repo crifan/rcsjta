@@ -22,7 +22,8 @@
             android:layout_width="match_parent"
             android:layout_height="0px"
             android:layout_weight="1"
-            android:background="@android:color/white"/>
+            android:paddingLeft="5dip"
+            android:background="@color/material_blue_grey_800"/>
     </LinearLayout>
 
     <ListView

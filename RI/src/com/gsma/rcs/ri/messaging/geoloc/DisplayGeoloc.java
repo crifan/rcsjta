@@ -44,6 +44,7 @@ import android.database.SQLException;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map.Entry;
@@ -87,8 +88,15 @@ public class DisplayGeoloc extends FragmentActivity implements OnMapReadyCallbac
         mapFragment.getMapAsync(this);
 
         /* Get geoloc value from intent */
-        mMapContactGeoloc = (HashMap<String, Geoloc>) getIntent()
-                .getSerializableExtra(EXTRA_GEOLOC);
+//        mMapContactGeoloc = (HashMap<String, Geoloc>) getIntent()
+//                .getSerializableExtra(EXTRA_GEOLOC);
+
+//        HashMap<String, Serializable> para_geoloc = (HashMap<String, Serializable>) getIntent().getSerializableExtra(EXTRA_GEOLOC);
+//        mMapContactGeoloc = (HashMap<String, Geoloc>)para_geoloc;
+
+//        mMapContactGeoloc = (HashMap<String, Geoloc>) getIntent().getParcelableExtra(EXTRA_GEOLOC);
+        mMapContactGeoloc = getIntent().getParcelableExtra(EXTRA_GEOLOC);
+
         if (sMarkerIcon == null) {
             sMarkerIcon = BitmapDescriptorFactory.fromResource(R.drawable.ri_map_icon);
         }

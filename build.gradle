@@ -1,21 +1,52 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 
 buildscript {
+//    ext {
+//        rootProject.ext.compileSdkVersion = ''
+//        rootProject.ext.compileSdkVersion = ''
+//        rootProject.ext.compileSdkVersion = ''
+//        rootProject.ext.compileSdkVersion = ''
+//    }
     repositories {
-        jcenter()
+//        google()
+        maven { url 'https://maven.aliyun.com/repository/google' }
+        maven { url 'https://maven.aliyun.com/repository/public' }
+//        jcenter()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:2.2.3'
+//        classpath 'com.android.tools.build:gradle:3.5.2'
+//        classpath 'com.android.tools.build:gradle:3.5.3'
+        classpath 'com.android.tools.build:gradle:4.0.1'
     }
 }
 
 allprojects {
     repositories {
-        jcenter()
+//        google()
+        maven { url 'https://maven.aliyun.com/repository/google' }
+        maven { url 'https://maven.aliyun.com/repository/public' }
+//        jcenter()
     }
+
+//    gradle.projectsEvaluated {
+//        tasks.withType(JavaCompile) {
+////            options.compilerArgs << "-Xlint:unchecked"
+////            options.compilerArgs << "-Xlint:deprecation"
+//            options.compilerArgs << "-Xlint:deprecation" << "-Xlint:unchecked"
+//        }
+//    }
 }
 
-project.ext.set("compileSdkVersion", 23)
-project.ext.set("minSdkVersion", 12)
-project.ext.set("targetSdkVersion", 23)
-project.ext.set("buildToolsVersion", "24.0.0")
+// project.ext.set("compileSdkVersion", 23)
+// project.ext.set("minSdkVersion", 12)
+// project.ext.set("targetSdkVersion", 23)
+ext {
+//    compileSdkVersion = 23
+    compileSdkVersion = 26
+//    minSdkVersion = 12
+//    minSdkVersion = 23
+    minSdkVersion = 14
+//    targetSdkVersion = 23
+    targetSdkVersion = 26
+}
+//project.ext.set("buildToolsVersion", "24.0.0")

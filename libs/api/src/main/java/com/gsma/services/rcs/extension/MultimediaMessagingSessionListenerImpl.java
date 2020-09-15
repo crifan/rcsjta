@@ -57,7 +57,8 @@ public class MultimediaMessagingSessionListenerImpl extends
     }
 
     public void onMessageReceived(ContactId contact, String sessionId, byte[] content) {
-        mListener.onMessageReceived(contact, sessionId, content);
+        // Deprecated since TAPI 1.6
+//        mListener.onMessageReceived(contact, sessionId, content);
     }
 
     public void onMessageReceived2(ContactId contact, String sessionId, byte[] content, String contentType) {

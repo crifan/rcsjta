@@ -1,8 +1,8 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion rootProject.compileSdkVersion
-    buildToolsVersion rootProject.buildToolsVersion
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    // buildToolsVersion rootProject.buildToolsVersion
 	
     defaultConfig {
         applicationId "android.tests.sigtest"
@@ -16,8 +16,8 @@ android {
 
 dependencies {
     // Testing-only dependencies
-    androidTestCompile 'com.android.support.test:runner:0.4.1'
-    androidTestCompile 'com.android.support.test:rules:0.4.1'
-	
-	compile files('libs/rcs_api.jar')
+    androidTestImplementation 'com.android.support.test:runner:0.4.1'
+    androidTestImplementation 'com.android.support.test:rules:0.4.1'
+
+    implementation files('libs/rcs_api.jar')
 }

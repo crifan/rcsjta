@@ -1,8 +1,8 @@
 apply plugin: 'com.android.library'
 
 android {
-    compileSdkVersion rootProject.compileSdkVersion
-    buildToolsVersion rootProject.buildToolsVersion
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    // buildToolsVersion rootProject.buildToolsVersion
 
 	lintOptions {
 		abortOnError false
@@ -21,6 +21,6 @@ android {
 }
 
 dependencies {
-    compile project(':api')
-	compile 'com.android.support:support-v4:25.0.1'
+    implementation project(':api')
+    implementation 'com.android.support:support-v4:25.0.1'
 }

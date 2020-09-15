@@ -41,7 +41,8 @@ import android.util.Log;
  */
 public class RcsServiceControl {
 
-    private static final boolean sAccurateLog = false;
+    // private static final boolean sAccurateLog = false;
+    private static final boolean sAccurateLog = true;
 
     /**
      * RCS stack package name

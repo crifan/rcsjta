@@ -20,8 +20,10 @@ package com.orangelabs.rcs.tts;
 
 import java.util.ArrayList;
 
+import android.annotation.TargetApi;
 import android.app.Service;
 import android.content.Intent;
+import android.os.Build;
 import android.os.IBinder;
 import android.speech.tts.TextToSpeech;
 import android.speech.tts.TextToSpeech.OnInitListener;
@@ -55,7 +57,8 @@ public class PlayTextToSpeech extends Service implements OnInitListener {
     }
 
     @Override
-    public void onStart(Intent intent, int startId) {
+//    public void onStart(Intent intent, int startId) {
+    public int onStartCommand(Intent intent, int flags, int startId) {
         Log.v(TAG, "Start TTS");
 
         // Get parameters
@@ -68,6 +71,8 @@ public class PlayTextToSpeech extends Service implements OnInitListener {
             Log.v(TAG, "Can't instanciate TTS engine");
             e.printStackTrace();
         }
+
+        return super.onStartCommand(intent, flags, startId);
     }
 
     @Override
@@ -81,6 +86,16 @@ public class PlayTextToSpeech extends Service implements OnInitListener {
         }
     }
 
+    @SuppressWarnings("deprecation")
+    private void ttsUnder20(String msgText, final int queueMode) {
+        tts.speak(msgText, queueMode, null);
+    }
+
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
+    private void ttsGreater21(String msgText, final int queueMode) {
+        tts.speak(msgText, queueMode, null, null);
+    }
+
     /**
      * TTS engine init
      * 
@@ -92,10 +107,25 @@ public class PlayTextToSpeech extends Service implements OnInitListener {
             if ((messages != null) && (messages.size() > 0)) {
                 // Speak
                 Log.v(TAG, "Start TTS session: play " + messages.size() + " messages");
-                tts.speak(messages.get(0), TextToSpeech.QUEUE_FLUSH, null);
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+//                    tts.speak(messages.get(0), TextToSpeech.QUEUE_FLUSH, null, null);
+                    ttsGreater21(messages.get(0), TextToSpeech.QUEUE_FLUSH);
+                } else {
+//                    if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
+//                    @SuppressWarnings("deprecation")
+//                    {
+//                        tts.speak(messages.get(0), TextToSpeech.QUEUE_FLUSH, null);
+//                    }
+                    ttsUnder20(messages.get(0), TextToSpeech.QUEUE_FLUSH);
+                }
                 if (messages.size() > 1) {
                     for (int i = 1; i < messages.size(); i++) {
-                        tts.speak(messages.get(i), TextToSpeech.QUEUE_ADD, null);
+//                        tts.speak(messages.get(i), TextToSpeech.QUEUE_ADD, null);
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                            ttsGreater21(messages.get(i), TextToSpeech.QUEUE_ADD);
+                        } else {
+                            ttsUnder20(messages.get(i), TextToSpeech.QUEUE_ADD);
+                        }
                     }
                 }
 

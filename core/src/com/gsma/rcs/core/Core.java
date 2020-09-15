@@ -226,7 +226,7 @@ public class Core {
     /**
      * Start the terminal core
      */
-    public synchronized void startCore() {
+        public synchronized void startCore() {
         if (mStarted) {
             return;
         }

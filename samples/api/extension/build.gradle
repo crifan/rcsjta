@@ -22,8 +22,8 @@ android {
         abortOnError false
     }
 
-    compileSdkVersion rootProject.compileSdkVersion
-    buildToolsVersion rootProject.buildToolsVersion
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    // buildToolsVersion rootProject.buildToolsVersion
 
     defaultConfig {
         applicationId "com.gsma.services.rcs.samples.extension"

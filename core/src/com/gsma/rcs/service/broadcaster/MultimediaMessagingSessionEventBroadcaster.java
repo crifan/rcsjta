@@ -58,8 +58,8 @@ public class MultimediaMessagingSessionEventBroadcaster implements
         final int N = mMultimediaMessagingListeners.beginBroadcast();
         for (int i = 0; i < N; i++) {
             try {
-                mMultimediaMessagingListeners.getBroadcastItem(i).onMessageReceived(contact,
-                        sessionId, message);
+//                mMultimediaMessagingListeners.getBroadcastItem(i).onMessageReceived(contact, sessionId, message);
+                mMultimediaMessagingListeners.getBroadcastItem(i).onMessageReceived2(contact, sessionId, message, contentType);
             } catch (RemoteException e) {
                 if (logger.isActivated()) {
                     logger.error("Can't notify listener", e);

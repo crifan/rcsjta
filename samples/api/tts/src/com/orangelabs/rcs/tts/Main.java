@@ -27,11 +27,14 @@ import android.os.Bundle;
 import android.preference.CheckBoxPreference;
 import android.preference.Preference;
 import android.preference.PreferenceActivity;
+import android.preference.PreferenceFragment;
 import android.util.Log;
 
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
+
+//import  androidx.preference;
 
 /**
  * Text-To-Speech for incoming chat and group chat invitation
@@ -39,6 +42,8 @@ import java.util.Set;
  * @author jexa7410
  */
 public class Main extends PreferenceActivity implements Preference.OnPreferenceChangeListener {
+//public class Main extends Activity{
+//public class Main extends PreferenceFragmentCompat {
 
     private CheckBoxPreference activateCheck;
     /**
@@ -50,6 +55,17 @@ public class Main extends PreferenceActivity implements Preference.OnPreferenceC
     private static final int MY_PERMISSION_REQUEST_ALL = 5428;
     private Set<String> mPermissionsToAsk;
 
+    public static class MyPreferenceFragment extends PreferenceFragment
+//    public static class MyPreferenceFragment extends PreferenceFragmentCompat
+    {
+        @Override
+        public void onCreate(final Bundle savedInstanceState)
+        {
+            super.onCreate(savedInstanceState);
+            addPreferencesFromResource(R.xml.tts_preferences);
+        }
+    }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,9 +75,12 @@ public class Main extends PreferenceActivity implements Preference.OnPreferenceC
         setTitle(R.string.app_title);
 
         // Set preferences
-        addPreferencesFromResource(R.xml.tts_preferences);
-        activateCheck = (CheckBoxPreference) getPreferenceScreen().findPreference("activate");
-        activateCheck.setOnPreferenceChangeListener(this);
+//        addPreferencesFromResource(R.xml.tts_preferences);
+        getFragmentManager().beginTransaction().replace(android.R.id.content, new MyPreferenceFragment()).commit();
+
+//        activateCheck = (CheckBoxPreference) getPreferenceScreen().findPreference("activate");
+        activateCheck = (CheckBoxPreference) getPreferenceManager().findPreference("activate");
+//        activateCheck.setOnPreferenceChangeListener(this);
     }
 
     @Override
