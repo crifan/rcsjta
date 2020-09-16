@@ -1,6 +1,6 @@
 # rcsjta
 
-最后更新：`20200915`
+最后更新：`20200916`
 
 ## 说明
 
@@ -20,7 +20,7 @@ https://github.com/crifan/rcsjta
 
 RCS-e stack for Android with GSMA API **RCS-e stack for Android with GSMA API**
 
-<img src='https://raw.githubusercontent.com/android-rcs/rcsjta/master/docs/website/twitter-bird-16x16.png'> <a href='http://twitter.com/androidrcsstack'>Follow @androidrcsstack</a><br>
+![twitter](docs/website/twitter-bird-16x16.png) <a href='http://twitter.com/androidrcsstack'>Follow @androidrcsstack</a><br>
 
 The RCS-e stack is an open source implementation of the Rich Communication Suite standards for Google Android platform. This implementation is compliant to GSMA RCS-e Blackbird standards. Thanks to its client/server API, the stack may be easily integrated with existing native Android applications (e.g. address book, dialer) and permits to create new RCS applications (e.g. chat, widgets).
 
@@ -71,7 +71,7 @@ The RCS core stack is under [Apache 2 license](https://rawgit.com/android-rcs/rc
 
 ## Stack overview:
 
-<img src='https://raw.githubusercontent.com/android-rcs/rcsjta/master/docs/website/overview.png'><br>
+![rcsjta stack overview](docs/website/overview.png)
 
 ## More docs:
 
